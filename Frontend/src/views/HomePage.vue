@@ -1,5 +1,16 @@
+
+<script setup>
+import Section1 from '@components/Section1.vue'
+import Section2 from '@components/Section2Cards.vue'
+</script>
 <template>
-  <div class="p-4">
+  <div>
+    <Section1 />
+  </div>
+  <div>
+    <Section2 />
+  </div>
+  <!---<div class="p-4">
     <div class="container-fluid px-5 row align-items-center">
       <div class="col">
         <div class="col" style="padding-left: 15%">
@@ -19,30 +30,8 @@
       <div class="col">
         <img class="img-fluid" src="../assets/Teste.png" alt="aqui uma imagem" />
       </div>
-
-      <!---<b-carousel
-      id="carousel-fade"
-      style="text-shadow: 0px 0px 2px #000"
-      fade
-      indicators
-      img-width="1024"
-      img-height="480"
-    >
-    <b-carousel-slide
-      caption="First Slide"
-      img-src="https://picsum.photos/1024/480/?image=10"
-    ></b-carousel-slide>
-    <b-carousel-slide
-      caption="Second Slide"
-      img-src="https://picsum.photos/1024/480/?image=12"
-    ></b-carousel-slide>
-    <b-carousel-slide
-      caption="Third Slide"
-      img-src="https://picsum.photos/1024/480/?image=22"
-    ></b-carousel-slide>
-  </b-carousel>-->
     </div>
-  </div>
+  </div>--->
 </template>
 
 <script>
@@ -55,4 +44,7 @@ export default {
     }
   }
 }
+
 </script>
+
+<style></style>
