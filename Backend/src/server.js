@@ -8,8 +8,10 @@ const cookieParser = require("cookie-parser");
 
 const host = process.env.HOST || "localhost";
 const port = process.env.PORT || 3000;
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASS;
 
-const allowedOrigins = ["http://192.168.1.128", "http://localhost"];
+const allowedOrigins = ["*"];
 
 app.use(
   cors({
@@ -30,12 +32,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(routes);
 
-const dbUser = process.env.DB_USER;
-const dbPassword = process.env.DB_PASS;
-
 mongoose
   .connect(
-    `mongodb+srv://${dbUser}:${dbPassword}@nossoclube.d7xa57q.mongodb.net/?retryWrites=true&w=majority`
+    `mongodb+srv://${dbUser}:${dbPassword}@brzcluster.jlgguld.mongodb.net/?retryWrites=true&w=majority&appName=BrzCluster`
   )
   .then(() => {
     app.listen(port, () => {

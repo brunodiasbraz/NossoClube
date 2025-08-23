@@ -102,6 +102,7 @@ async function authRegister(req, res) {
   const sendEmail = process.env.EMAIL;
   const emailPassword = process.env.EMAIL_PASSWORD;
   const apiUrl = process.env.HOST;
+  const apiPort = process.env.PORT;
   // create user
   const user = new User({
     name,
@@ -111,7 +112,6 @@ async function authRegister(req, res) {
   const verifyToken = suid(16);
   user.token_verify = verifyToken;
 
-  console.log(verifyToken);
   try {
     await user.save();
 
@@ -120,15 +120,13 @@ async function authRegister(req, res) {
     });
 
     let message = {
-      from: "gabusoftapp@gmail.com",
+      from: `"Nosso Clube" <${sendEmail}>`,
       to: user.email,
       subject: "Validação de cadastro Nosso Clube",
       text: "Plaintext version of the message",
       html:
-        '<img src="https://ci3.googleusercontent.com/meips/ADKq_NYL2HBvmfArevX3NVujmQCPWNFsgX3e2hjNCIZn7wwvXIa1forX93ezrWp2zlocURZiHNdcmUKX7nVR1hykvEYH9z2V1PNazvd4tbOmYD4KRmNam4z_uunMuZD-cp4vJl0hboEc_C7xPxOvlJ9qU6pUjTiS2cwgesI=s0-d-e1-ft#https://mcusercontent.com/80734d74fa766a626186188dc/images/64dbc363-0c78-fb86-2e2f-a7e49b5615f1.png" alt="Imagem Externa">' +
         `<p>Olá, Por favor, clique no link abaixo para verificar seu endereço de e-mail:</p>` +
-        `<a href="http://${apiUrl}/verify-email/${verifyToken}">` +
-        /* `<a href="http://localhost/verify-email/token=${verifyToken}">` + */
+        `<a href="http://${apiUrl}:${apiPort}/verify-email/${verifyToken}">` +
         `Verificar Email</a><p>Se você não solicitou esta verificação, ignore este e-mail.</p>`,
     };
 
@@ -214,4 +212,5 @@ async function authLogout(req, res) {
   });
   res.status(200).json({ msg: "Logout realizado com sucesso!" });
 }
-module.exports = { authVerify, authRegister, authLogin, authLogout };
+
+module.exports = { authVerify, authRegister, authLogin, authLogout, authenticateToken, checkToken };

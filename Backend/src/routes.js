@@ -6,6 +6,8 @@ const {
   authRegister,
   authLogin,
   authLogout,
+  authenticateToken,
+  checkToken,
 } = require("./controllers/authController");
 const { getUser, checkTokenUser } = require("./controllers/userController");
 
@@ -15,7 +17,7 @@ routes.get("/", (req, res) => {
   res.status(200).json({ msg: "Bem vindo a API!" });
 });
 
-routes.post("/auth/verify", authVerify);
+routes.get("/auth/verify", authVerify);
 routes.post("/auth/register", authRegister);
 routes.post("/auth/login", authLogin);
 routes.post("/auth/logout", authLogout);
